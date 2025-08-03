@@ -61,6 +61,33 @@ public class CryptoHelper
         }
     }
 
+    /*
+    //dotnet add package BCrypt.Net-Next
+    //using BCrypt.Net
+    public string GenerateBCrypt(string input) {
+        if (!string.IsNullOrEmpty(input)) {
+            return BCrypt.Net.BCrypt.HashPassword(input);
+        } else {
+            throw new ArgumentNullException(nameof(input), "輸入不能為 null");
+            //return null;
+        }
+    }
+
+    public int VerifyBCrypt(string input, string dbVal) {
+        if (!string.IsNullOrEmpty(input) && !string.IsNullOrEmpty(dbVal)) {
+            bool isMatch = BCrypt.Net.BCrypt.Verify(input, dbVal);
+            if (isMatch) {
+                return 1; // 密碼正確
+            } else {
+                return -1; // 密碼錯誤
+            }
+        } else {
+            throw new ArgumentNullException(nameof(input), "輸入不能為 null");
+            //return -2; //輸入有誤
+        }
+    }
+    */
+
     // using System.Security.Cryptography;
     // **設定 AES 金鑰與 IV（向量）**
     //private static readonly byte[] AesKey = Encoding.UTF8.GetBytes("12345678901234567890123456789012"); // 32 bytes
