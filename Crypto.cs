@@ -95,9 +95,9 @@ public class CryptoHelper
     public string AesEncrypt(string plainText, string pwd) 
     {
         using (System.Security.Cryptography.Aes aesAlg = System.Security.Cryptography.Aes.Create()) {
-            char[] pwdSha = GenerateSHA(pwd).ToCharArray();
-            aesAlg.Key = Encoding.UTF8.GetBytes((new string(pwdSha) + new string(pwdSha)).Substring(0, 32));
-            aesAlg.IV = Encoding.UTF8.GetBytes((new string(pwdSha) + new string(pwdSha)).Substring(0, 16));
+            char[] pwdSha = GenerateSHA256(pwd).ToCharArray();
+            aesAlg.Key = Encoding.UTF8.GetBytes((new string(pwdSha)).Substring(0, 32));
+            aesAlg.IV = Encoding.UTF8.GetBytes((new string(pwdSha)).Substring(32, 16));
             aesAlg.Mode = CipherMode.CBC;
             aesAlg.Padding = PaddingMode.PKCS7;
             Array.Clear(pwdSha, 0, pwdSha.Length);
@@ -122,9 +122,9 @@ public class CryptoHelper
     {
         using (System.Security.Cryptography.Aes aesAlg = System.Security.Cryptography.Aes.Create()) {
             try {
-                char[] pwdSha = GenerateSHA(pwd).ToCharArray();
-                aesAlg.Key = Encoding.UTF8.GetBytes((new string(pwdSha) + new string(pwdSha)).Substring(0, 32));
-                aesAlg.IV = Encoding.UTF8.GetBytes((new string(pwdSha) + new string(pwdSha)).Substring(0, 16));
+                char[] pwdSha = GenerateSHA256(pwd).ToCharArray();
+                aesAlg.Key = Encoding.UTF8.GetBytes((new string(pwdSha)).Substring(0, 32));
+                aesAlg.IV = Encoding.UTF8.GetBytes((new string(pwdSha)).Substring(32, 16));
                 aesAlg.Mode = CipherMode.CBC;
                 aesAlg.Padding = PaddingMode.PKCS7;
                 Array.Clear(pwdSha, 0, pwdSha.Length);
